@@ -76,11 +76,14 @@ void Character::visitShop()
 		{
 			shop.displayItems();
 
-			std::cout << "선택: ";
-			int itemIndex;
-			std::cin >> itemIndex;
+			if (shop.hasItem())
+			{
+				std::cout << "선택: ";
+				int itemIndex;
+				std::cin >> itemIndex;
 
-			buyItem(itemIndex - 1, shop);
+				buyItem(itemIndex - 1, shop);
+			}
 		}
 			break;
 		case 2:

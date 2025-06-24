@@ -14,20 +14,22 @@ void Shop::displayItems()
 {
 	std::cout << "-------------상점-------------\n";
 
-	for (size_t i = 0; i < availableItems.size(); i++)
+	std::erase_if(availableItems, [] (std::unique_ptr<Item>& item) { return item == nullptr; });
+
+	if (!availableItems.empty())
 	{
-		if (availableItems[i] == nullptr)
+		for (size_t i = 0; i < availableItems.size(); i++)
 		{
-			availableItems.erase(availableItems.begin() + i);
+			if (availableItems[i] != nullptr)
+			{
+				std::cout << i + 1 << ". " << availableItems[i]->getName() <<
+					": Gold " << availableItems[i]->getPrice() << '\n';
+			}
 		}
 	}
-
-	for (size_t i = 0; i < availableItems.size(); i++)
+	else
 	{
-		if (availableItems[i] != nullptr)
-		{
-			std::cout << i + 1 << ". " << availableItems[i]->getName() <<
-				": Gold " << availableItems[i]->getPrice() << '\n';
-		}
+		std::cout << "상점에 아이템이 존재하지 않습니다.\n";
+		bHasItem = false;
 	}
 }

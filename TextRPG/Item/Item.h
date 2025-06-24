@@ -31,7 +31,7 @@ private:
 	int healthRestore;
 
 public:
-	HealthPotion() :Item("힐포션", 100, EItemType::HealthPotion), healthRestore(50) {}
+	HealthPotion() :Item("힐포션", 5, EItemType::HealthPotion), healthRestore(50) {}
 
 	virtual void use(class Character* player) override;
 };
@@ -42,7 +42,7 @@ private:
 	int attackIncrease;
 
 public:
-	AttackBoost() :Item("딜부스터", 250, EItemType::AttackBoost), attackIncrease(10) {}
+	AttackBoost() :Item("딜부스터", 1, EItemType::AttackBoost), attackIncrease(10) {}
 
 	virtual void use(class Character* player) override;
 };
