@@ -16,7 +16,9 @@ public:
 	Shop();
 	virtual ~Shop() = default;
 
-	void displayItems();
+	void displayItems() const;
+
+	void refreshShop();
 	bool hasItem() const { return bHasItem; }
 	
 	std::unique_ptr<Item>& getItem(int index) { return availableItems[index]; }

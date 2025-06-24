@@ -24,7 +24,7 @@ public:
 	Character(std::string name);
 
 	void displayInventory() const;
-	void displayStatus();
+	void displayStatus() const;
 	void takeDamage(int damage);
 	void visitShop();
 
@@ -45,7 +45,7 @@ public:
 	void setLevelUp();
 
 	int getHealth() const { return health; }
-	void addHealth(int health);
+	void addHealth(int hp);
 
 	int getAttack() const { return attack; }
 	void addAttack(int atk);
@@ -54,6 +54,6 @@ public:
 	void addExperience(int exp);
 
 	int getGold() const { return gold; }
-	void setGold(int gold);
+	void setGold(int goldValue);
 
 };

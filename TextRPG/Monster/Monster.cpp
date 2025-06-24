@@ -1,7 +1,15 @@
 ﻿#include "Monster.h"
 
+#include "../System/Utils.h"
 #include "../Item/Item.h"
 #include "../System/ItemFactory.h"
+
+Monster::Monster(std::string name, int level, float healthMultiply, float attackMultiply)
+	: name(name),
+health(Utils::getRandomInRange(static_cast<int>(level * 20*healthMultiply), static_cast<int>(level * 30*healthMultiply))),
+attack(Utils::getRandomInRange(static_cast<int>(level * 20 * attackMultiply), static_cast<int>(level * 30 * attackMultiply)))
+{
+}
 
 void Monster::takeDamage(int damage)
 {

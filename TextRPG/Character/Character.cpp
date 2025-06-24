@@ -31,7 +31,7 @@ void Character::displayInventory() const
 	std::cout << "------------------\n";
 }
 
-void Character::displayStatus()
+void Character::displayStatus() const
 {
 	std::cout << "-------스탯------\n"
 		<< "이름: " << name << '\n'
@@ -69,44 +69,45 @@ void Character::visitShop()
 			<< "(1/2/3): ";
 		int choice;
 		std::cin >> choice;
-		
+
 		switch (choice)
 		{
 		case 1:
-		{
-			shop.displayItems();
-
-			if (shop.hasItem())
 			{
-				std::cout << "선택: ";
-				int itemIndex;
-				std::cin >> itemIndex;
+				shop.refreshShop();
+				shop.displayItems();
 
-				buyItem(itemIndex - 1, shop);
+				if (shop.hasItem())
+				{
+					std::cout << "선택: ";
+					int itemIndex;
+					std::cin >> itemIndex;
+
+					buyItem(itemIndex - 1, shop);
+				}
 			}
-		}
 			break;
 		case 2:
-		{
-			this->displayInventory();
-
-			if (hasItem())
 			{
-				std::cout << "0. 취소\n";
-				std::cout << "선택: ";
-				int itemIndex;
-				std::cin >> itemIndex;
+				this->displayInventory();
 
-				if (itemIndex > 0)
-					sellItem(itemIndex - 1, shop);
+				if (hasItem())
+				{
+					std::cout << "0. 취소\n";
+					std::cout << "선택: ";
+					int itemIndex;
+					std::cin >> itemIndex;
+
+					if (itemIndex > 0)
+						sellItem(itemIndex - 1, shop);
+					else
+						std::cout << "아이템 판매를 취소했습니다.\n";
+				}
 				else
-					std::cout << "아이템 판매를 취소했습니다.\n";
+				{
+					std::cout << "판매할 아이템이 없습니다.\n";
+				}
 			}
-			else
-			{
-				std::cout << "판매할 아이템이 없습니다.\n";
-			}
-		}
 			break;
 		case 3:
 			return;
@@ -125,7 +126,7 @@ void Character::buyItem(int index, Shop& shop)
 		int buyPrice = getGold() - item->getPrice();
 		setGold(buyPrice);
 		std::cout << item->getName() << "을(를) 구매했습니다! 잔액 Gold: " << getGold() << '\n';
-		this->setItem(std::move(item));	// move(item) 이후로 item에 접근 불가
+		this->setItem(std::move(item)); // move(item) 이후로 item에 접근 불가
 	}
 	else
 	{
@@ -140,7 +141,7 @@ void Character::sellItem(int index, Shop& shop)
 		// 판매가만큼 골드를 얻고 인벤토리에서 해당 아이템 지우기
 		int sellPrice = static_cast<int>(inventory[index]->getPrice() * 0.6);
 		setGold(getGold() + sellPrice);
-		
+
 		std::cout << inventory[index]->getName() << "을(를) 팔았습니다! "
 			<< "판매가: " << sellPrice << " 잔액 Gold: " << getGold() << '\n';
 
@@ -163,7 +164,7 @@ void Character::useItem(int index)
 			// TODO: 인벤토리의 아이템 사용(Item::use())
 			inventory[index]->use(this);
 			std::cout << "사용 아이템: " << inventory[index]->getName() << '\n';
-			
+
 			inventory.erase(inventory.begin() + index);
 		}
 		else
@@ -199,14 +200,11 @@ void Character::setLevelUp()
 	addHealth(maxHealth);
 }
 
-void Character::addHealth(int health)
+void Character::addHealth(int hp)
 {
-	this->health += health;
+	health += hp;
 
-	if (this->health >= maxHealth)
-	{
-		this->health = maxHealth;
-	}
+	health = std::min(health, maxHealth);
 }
 
 void Character::addAttack(int atk)
@@ -224,8 +222,7 @@ void Character::addExperience(int exp)
 	}
 }
 
-void Character::setGold(int gold)
+void Character::setGold(int goldValue)
 {
-	this->gold = gold;
+	gold = goldValue;
 }
-

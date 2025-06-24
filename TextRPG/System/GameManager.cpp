@@ -6,6 +6,7 @@
 
 #include "../Monster/Monster.h"
 #include "../Item/Item.h"
+#include "../System/Utils.h"
 
 void GameManager::gameStart()
 {
@@ -104,6 +105,7 @@ void GameManager::createPlayer()
 	std::cout << "캐릭터 " << name << " 생성 완료!\n";
 	player->displayStatus();
 }
+
 void GameManager::battle(Character* player)
 {
 	std::unique_ptr<Monster> monster = createMonster(player->getLevel());
@@ -208,7 +210,6 @@ void GameManager::battle(Character* player)
 		return;
 	}
 }
-
 
 std::unique_ptr<Monster> GameManager::createMonster(int level)
 {

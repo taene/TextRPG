@@ -2,8 +2,6 @@
 #include <memory>
 #include <string>
 
-#include "../System/Utils.h"
-
 enum class EMonsterType
 {
 	Default = 0,
@@ -11,7 +9,8 @@ enum class EMonsterType
 	Orc,
 	Troll,
 	Slime,
-	Boss
+	Boss,
+	End
 };
 
 class Monster
@@ -20,15 +19,12 @@ protected:
 	std::string name;
 	int health;
 	int attack;
-	EMonsterType type;
+	EMonsterType type = EMonsterType::Default;
 
 	bool bIsDead = false;
 
 public:
-	Monster(std::string name, int health, int attack, EMonsterType type)
-		:name(name), health(health), attack(attack), type(type)
-	{
-	}
+	Monster(std::string name, int level, float healthMultiply = 1.f, float attackMultiply = 1.f);
 	virtual ~Monster() = default;
 
 	std::string getName() const { return name; }
@@ -38,7 +34,7 @@ public:
 
 	bool isDead() const { return bIsDead; }
 	void takeDamage(int damage);
-	
+
 	std::unique_ptr<class Item> dropItem();
 };
 
@@ -46,10 +42,7 @@ class Goblin : public Monster
 {
 public:
 	Goblin(int level)
-		:Monster("고블린",
-			Utils::getRandomInRange(level * 20, level * 30),
-			Utils::getRandomInRange(level * 5, level * 10),
-			EMonsterType::Goblin)
+		: Monster("고블린", level)
 	{
 	}
 };
@@ -58,10 +51,7 @@ class Orc : public Monster
 {
 public:
 	Orc(int level)
-		:Monster("오크",
-			Utils::getRandomInRange(level * 20, level * 30),
-			Utils::getRandomInRange(level * 5, level * 10),
-			EMonsterType::Orc)
+		: Monster("오크", level)
 	{
 	}
 };
@@ -70,10 +60,7 @@ class Troll : public Monster
 {
 public:
 	Troll(int level)
-		:Monster("트롤",
-			Utils::getRandomInRange(level * 20, level * 30),
-			Utils::getRandomInRange(level * 5, level * 10),
-			EMonsterType::Troll)
+		: Monster("트롤", level)
 	{
 	}
 };
@@ -82,10 +69,7 @@ class Slime : public Monster
 {
 public:
 	Slime(int level)
-		:Monster("슬라임",
-			Utils::getRandomInRange(level * 20, level * 30),
-			Utils::getRandomInRange(level * 5, level * 10),
-			EMonsterType::Slime)
+		: Monster("슬라임", level)
 	{
 	}
 };
@@ -94,10 +78,7 @@ class Dragon : public Monster
 {
 public:
 	Dragon(int level)
-		:Monster("드래곤",
-			Utils::getRandomInRange(static_cast<int>(level * 20 * 1.5f), static_cast<int>(level * 30 * 1.5f)),
-			Utils::getRandomInRange(static_cast<int>(level * 5 * 1.5f), static_cast<int>(level * 10 * 1.5f)),
-			EMonsterType::Boss)
+		: Monster("드래곤", level, 1.5f, 1.5f)
 	{
 	}
 };

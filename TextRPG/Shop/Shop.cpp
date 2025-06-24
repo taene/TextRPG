@@ -10,11 +10,9 @@ Shop::Shop()
 	availableItems.push_back(ItemFactory::createItem(EItemType::AttackBoost));
 }
 
-void Shop::displayItems()
+void Shop::displayItems() const
 {
 	std::cout << "-------------상점-------------\n";
-
-	std::erase_if(availableItems, [] (std::unique_ptr<Item>& item) { return item == nullptr; });
 
 	if (!availableItems.empty())
 	{
@@ -30,6 +28,13 @@ void Shop::displayItems()
 	else
 	{
 		std::cout << "상점에 아이템이 존재하지 않습니다.\n";
-		bHasItem = false;
 	}
+}
+
+void Shop::refreshShop()
+{
+	std::erase_if(availableItems, [] (std::unique_ptr<Item>& item) { return item == nullptr; });
+
+	if (availableItems.empty())
+		bHasItem = false;
 }
