@@ -7,49 +7,67 @@
     <Filter Include="Character">
       <UniqueIdentifier>{4dd1f573-f933-4d62-ae85-7361f7a9d659}</UniqueIdentifier>
     </Filter>
+    <Filter Include="System">
+      <UniqueIdentifier>{e1dfd9ea-727d-4ada-8370-b5db7064d28c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Item">
+      <UniqueIdentifier>{4b4f479d-fca6-40b8-97e3-c169eeec2997}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shop">
+      <UniqueIdentifier>{fdc8de31-7415-4982-9e5d-f9cfa2cd56c5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Character\Character.cpp">
       <Filter>Character</Filter>
     </ClCompile>
-    <ClCompile Include="Monster\Dragon.cpp">
-      <Filter>Monster</Filter>
-    </ClCompile>
-    <ClCompile Include="Monster\Goblin.cpp">
-      <Filter>Monster</Filter>
-    </ClCompile>
-    <ClCompile Include="Monster\Orc.cpp">
-      <Filter>Monster</Filter>
-    </ClCompile>
-    <ClCompile Include="Monster\Slime.cpp">
-      <Filter>Monster</Filter>
-    </ClCompile>
-    <ClCompile Include="Monster\Troll.cpp">
-      <Filter>Monster</Filter>
-    </ClCompile>
     <ClCompile Include="TextRPG.cpp" />
+    <ClCompile Include="System\GameManager.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster\Monster.cpp">
+      <Filter>Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="System\MonsterFactory.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Utils.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Item\Item.cpp">
+      <Filter>Item</Filter>
+    </ClCompile>
+    <ClCompile Include="System\ItemFactory.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Shop\Shop.cpp">
+      <Filter>Shop</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character\Character.h">
       <Filter>Character</Filter>
     </ClInclude>
-    <ClInclude Include="Monster\Troll.h">
-      <Filter>Monster</Filter>
-    </ClInclude>
-    <ClInclude Include="Monster\Dragon.h">
-      <Filter>Monster</Filter>
-    </ClInclude>
-    <ClInclude Include="Monster\Goblin.h">
-      <Filter>Monster</Filter>
-    </ClInclude>
     <ClInclude Include="Monster\Monster.h">
       <Filter>Monster</Filter>
     </ClInclude>
-    <ClInclude Include="Monster\Orc.h">
-      <Filter>Monster</Filter>
+    <ClInclude Include="System\GameManager.h">
+      <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="Monster\Slime.h">
-      <Filter>Monster</Filter>
+    <ClInclude Include="System\MonsterFactory.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Utils.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Item\Item.h">
+      <Filter>Item</Filter>
+    </ClInclude>
+    <ClInclude Include="System\ItemFactory.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Shop\Shop.h">
+      <Filter>Shop</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

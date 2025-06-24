@@ -1,15 +1,103 @@
-#pragma once
+ï»¿#pragma once
+#include <memory>
 #include <string>
+
+#include "../System/Utils.h"
+
+enum class EMonsterType
+{
+	Default = 0,
+	Goblin,
+	Orc,
+	Troll,
+	Slime,
+	Boss
+};
+
 class Monster
 {
-public:
-	virtual std::string getName() const = 0;
-	virtual void takeDamage(int damage) = 0;
-	virtual int getHealth() const = 0;
-	virtual int getAttack() const = 0;
-	//virtual item* dropItem() const = 0; ÃßÈÄ ±¸Çö
+protected:
+	std::string name;
+	int health;
+	int attack;
+	EMonsterType type;
 
-	virtual ~Monster()
+	bool bIsDead = false;
+
+public:
+	Monster(std::string name, int health, int attack, EMonsterType type)
+		:name(name), health(health), attack(attack), type(type)
+	{
+	}
+	virtual ~Monster() = default;
+
+	std::string getName() const { return name; }
+	int getHealth() const { return health; }
+	int getAttack() const { return attack; }
+	EMonsterType getType() const { return type; }
+
+	bool isDead() const { return bIsDead; }
+	void takeDamage(int damage);
+	
+	std::unique_ptr<class Item> dropItem();
+};
+
+class Goblin : public Monster
+{
+public:
+	Goblin(int level)
+		:Monster("ê³ ë¸”ë¦°",
+			Utils::getRandomInRange(level * 20, level * 30),
+			Utils::getRandomInRange(level * 5, level * 10),
+			EMonsterType::Goblin)
+	{
+	}
+};
+
+class Orc : public Monster
+{
+public:
+	Orc(int level)
+		:Monster("ì˜¤í¬",
+			Utils::getRandomInRange(level * 20, level * 30),
+			Utils::getRandomInRange(level * 5, level * 10),
+			EMonsterType::Orc)
+	{
+	}
+};
+
+class Troll : public Monster
+{
+public:
+	Troll(int level)
+		:Monster("íŠ¸ë¡¤",
+			Utils::getRandomInRange(level * 20, level * 30),
+			Utils::getRandomInRange(level * 5, level * 10),
+			EMonsterType::Troll)
+	{
+	}
+};
+
+class Slime : public Monster
+{
+public:
+	Slime(int level)
+		:Monster("ìŠ¬ë¼ì„",
+			Utils::getRandomInRange(level * 20, level * 30),
+			Utils::getRandomInRange(level * 5, level * 10),
+			EMonsterType::Slime)
+	{
+	}
+};
+
+class Dragon : public Monster
+{
+public:
+	Dragon(int level)
+		:Monster("ë“œë˜ê³¤",
+			Utils::getRandomInRange(static_cast<int>(level * 20 * 1.5f), static_cast<int>(level * 30 * 1.5f)),
+			Utils::getRandomInRange(static_cast<int>(level * 5 * 1.5f), static_cast<int>(level * 10 * 1.5f)),
+			EMonsterType::Boss)
 	{
 	}
 };

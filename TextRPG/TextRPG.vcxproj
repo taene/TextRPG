@@ -124,21 +124,24 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Character\Character.cpp" />
-    <ClCompile Include="Monster\Dragon.cpp" />
-    <ClCompile Include="Monster\Goblin.cpp" />
-    <ClCompile Include="Monster\Orc.cpp" />
-    <ClCompile Include="Monster\Slime.cpp" />
-    <ClCompile Include="Monster\Troll.cpp" />
+    <ClCompile Include="Shop\Shop.cpp" />
+    <ClCompile Include="System\ItemFactory.cpp" />
+    <ClCompile Include="Item\Item.cpp" />
+    <ClCompile Include="System\MonsterFactory.cpp" />
+    <ClCompile Include="Monster\Monster.cpp" />
+    <ClCompile Include="System\GameManager.cpp" />
     <ClCompile Include="TextRPG.cpp" />
+    <ClCompile Include="System\Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character\Character.h" />
-    <ClInclude Include="Monster\Dragon.h" />
-    <ClInclude Include="Monster\Goblin.h" />
+    <ClInclude Include="Shop\Shop.h" />
+    <ClInclude Include="System\ItemFactory.h" />
+    <ClInclude Include="Item\Item.h" />
+    <ClInclude Include="System\MonsterFactory.h" />
+    <ClInclude Include="System\GameManager.h" />
     <ClInclude Include="Monster\Monster.h" />
-    <ClInclude Include="Monster\Orc.h" />
-    <ClInclude Include="Monster\Slime.h" />
-    <ClInclude Include="Monster\Troll.h" />
+    <ClInclude Include="System\Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
